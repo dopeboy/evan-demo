@@ -21,16 +21,29 @@ import { Message } from "@/components/message";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useDropzone } from "react-dropzone";
 import Spreadsheet from "react-spreadsheet";
-import {gl_data, gl_columnLabels, gl_rowLabels} from "./gl_data";
-import {driver_data, driver_columnLabels, driver_rowLabels} from "./driver_data";
-import {joined_data, joined_columnLabels, joined_rowLabels} from "./joined_data";
+import { gl_data, gl_columnLabels, gl_rowLabels } from "./gl_data";
+import {
+  driver_data,
+  driver_columnLabels,
+  driver_rowLabels,
+} from "./driver_data";
+import {
+  joined_data,
+  joined_columnLabels,
+  joined_rowLabels,
+} from "./joined_data";
+import Editor from "react-simple-code-editor";
+import { highlight, languages } from 'prismjs/components/prism-core';
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-sql';
+import 'prismjs/themes/prism.css'; //Example style, you can use another
 
 
 
 const initialMessages = [
   {
     messenger: "Evan",
-    date: "2024-06-10",
+    date: "2024-07-11",
     message:
       "sup! 👋<br/><br/>glad to help ya with some revenue analysis. can you tell me a little more about what you want to achieve?",
     typewriter: true,
@@ -38,49 +51,49 @@ const initialMessages = [
   },
   {
     messenger: "You",
-    date: "2024-06-10",
+    date: "2024-07-11",
     message: "<this gets filled in by user>",
     typewriter: false,
     loading: false,
   },
   {
     messenger: "Evan",
-    date: "2024-06-10",
+    date: "2024-07-11",
     message:
-      "you work at Uber? yo let me get some coupons while we're here 🤞🤞<br/><br/>nah OK, I got you. when I think driver churn, I think two things: driver data and financials. the former is probably an export you can ask you from the Driver team at Uber. the latter is an export you can probably get yourself, sitting in Finance.<br/><br/>can you get me those exports? 📎",
+      "you work at Uber? yo let me get some coupon codes while we're here 🤞🤞<br/><br/>nah OK, I got you. when I think driver churn, I think two things: driver data and financials. the former is probably an export you can ask you from the Driver team at Uber. the latter is an export you can probably get yourself, sitting in Finance.<br/><br/>can you get me those exports? 📎",
     typewriter: true,
     loading: true,
   },
   {
     messenger: "You",
-    date: "2024-06-10",
+    date: "2024-07-11",
     message: "<this gets filled in by user>",
     typewriter: false,
     loading: false,
   },
   {
     messenger: "Evan",
-    date: "2024-06-10",
+    date: "2024-07-11",
     message:
-      "you're speaking my language. I see two files, driver_export_062024.csv which is showing me drivers, which city they live in, and whether they've churned. I'm also seeing data that looks like it's from a general ledger, that shows different accounts.<br/><br/>let me craft a plan so we can talk through how I'm thinking about this. one sec...🤔",
+      "you're speaking my language. I see two files, driver_export_072024.csv which is showing me drivers, which city they live in, and whether they've churned. I'm also seeing data that looks like it's from a general ledger, that shows different accounts.<br/><br/>let me craft a plan so we can talk through how I'm thinking about this. one sec...🤔",
     typewriter: true,
     loading: true,
   },
   {
     messenger: "You",
-    date: "2024-06-10",
+    date: "2024-07-11",
     message: "<this gets filled in by user>",
     typewriter: false,
     loading: false,
   },
   {
     messenger: "Evan",
-    date: "2024-06-10",
+    date: "2024-07-11",
     message: `my bad, was still thinking. OK I think I got a plan for us:<br/><br/>
     1. cleaned up and normalized the GL data. ↗️<br/>
     2. cleaned up and normalized the driver data. ↗️<br/>
     3. intelligently joined the two datasets. ↗️<br/>
-    4. gave you a financial model in excel that you can start working your magic on.<br/>`,
+    4. gave you a financial model in excel that you can start working your magic on. ↗️<br/>`,
     typewriter: true,
     loading: true,
   },
@@ -107,10 +120,14 @@ const Planner = () => {
   };
 
   const onDrop = (acceptedFiles) => {
-    setCurrentMessage("📎 driver_export_062024.csv\n📎 gl_export_062024.csv");
+    setCurrentMessage("📎 driver_export_072024.csv\n📎 gl_export_072024.csv");
   };
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
+
+  const [glSQL, setGLSQL] = React.useState(`select * from gl_data`);
+  const [driverSQL, setDriverSQL] = React.useState(`select * from driver_data`);
+  const [joinedSQL, setJoinedSQL] = React.useState(`select * from joined_data`);
 
   return (
     <>
@@ -189,7 +206,7 @@ const Planner = () => {
               <h3 class="font-semibold leading-none tracking-tight text-base">
                 Explorer
               </h3>
-              {1===2 || frame == 6 ? (
+              {1 === 1 || frame == 6 ? (
                 <Tabs className="w-[400px] mt-4">
                   <TabsList>
                     <TabsTrigger value="gl">GL Data</TabsTrigger>
@@ -197,18 +214,40 @@ const Planner = () => {
                     <TabsTrigger value="joined">Joined Data</TabsTrigger>
                   </TabsList>
                   <TabsContent value="gl">
+                    <Editor
+                      value={glSQL}
+                      onValueChange={(code) => setGLSQL(code)}
+                      highlight={(code) => highlight(code, languages.sql)}
+                      padding={10}
+                      style={{
+                        fontFamily: '"Fira code", "Fira Mono", monospace',
+                        fontSize: 12,
+                      }}
+                    />
                     <Spreadsheet
                       data={gl_data}
                       columnLabels={gl_columnLabels}
                     />
                   </TabsContent>
                   <TabsContent value="driver">
+                    <Editor
+                      value={driverSQL}
+                      onValueChange={(code) => setDriverSQL(code)}
+                      highlight={(code) => highlight(code, languages.sql)}
+                      padding={10}
+                    />
                     <Spreadsheet
                       data={driver_data}
                       columnLabels={driver_columnLabels}
                     />
                   </TabsContent>
                   <TabsContent value="joined">
+                    <Editor
+                      value={joinedSQL}
+                      onValueChange={(code) => setJoinedSQL(code)}
+                      highlight={(code) => highlight(code, languages.sql)}
+                      padding={10}
+                    />
                     <Spreadsheet
                       data={joined_data}
                       columnLabels={joined_columnLabels}

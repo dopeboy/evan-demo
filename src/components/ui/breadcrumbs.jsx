@@ -12,9 +12,8 @@ import { usePathname } from "next/navigation";
 
 const Breadcrumbs = () => {
   const pathname = usePathname();
-  console.log(pathname);
   return (
-    <Breadcrumb className="mx-auto w-96">
+    <Breadcrumb className="mx-auto">
       <BreadcrumbList>
         <BreadcrumbItem>
           {pathname === "/" ? (
@@ -34,10 +33,6 @@ const Breadcrumbs = () => {
           ) : (
             <BreadcrumbLink className="" href="/execute">Execute</BreadcrumbLink>
           )}
-        </BreadcrumbItem>
-        <BreadcrumbSeparator className="" />
-        <BreadcrumbItem>
-          <BreadcrumbLink className="">View</BreadcrumbLink>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

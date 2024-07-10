@@ -35,9 +35,9 @@ const Home = () => {
   return (
     <>
       <Header className="" />
-      <main className="max-w-screen-2xl mx-auto mt-8">
+      <main className="max-w-screen-2xl mx-auto mt-8 min-h-screen">
         <Breadcrumbs />
-        <div className="grid grid-cols-3 gap-8 justify-items-center mt-8">
+        <div className="grid grid-cols-3 gap-8 mt-8">
           <Link href="/execute">
             <Card className="w-[400px] hover:bg-gray-100 cursor-pointer">
               <div className="flex items-center">

@@ -1,0 +1,28 @@
+export const driver_columnLabels = ["Driver_ID", "Earnings (monthly)", "Weekly Working Hours", "City", "Churn Status", "Churn Date"];
+export const driver_data = [
+  [{ value: "1" }, { value: "400" }, { value: "15" }, { value: "New York" }, { value: "Yes" }, { value: "2023-04-15" }],
+  [{ value: "2" }, { value: "700" }, { value: "25" }, { value: "Los Angeles" }, { value: "No" }, { value: "" }],
+  [{ value: "3" }, { value: "1200" }, { value: "45" }, { value: "Chicago" }, { value: "No" }, { value: "" }],
+  [{ value: "4" }, { value: "300" }, { value: "10" }, { value: "New York" }, { value: "Yes" }, { value: "2023-05-10" }],
+  [{ value: "5" }, { value: "800" }, { value: "30" }, { value: "Los Angeles" }, { value: "No" }, { value: "" }],
+  [{ value: "6" }, { value: "1500" }, { value: "50" }, { value: "Chicago" }, { value: "No" }, { value: "" }],
+  [{ value: "7" }, { value: "450" }, { value: "20" }, { value: "New York" }, { value: "Yes" }, { value: "2023-06-20" }],
+  [{ value: "8" }, { value: "900" }, { value: "35" }, { value: "Los Angeles" }, { value: "No" }, { value: "" }],
+  [{ value: "9" }, { value: "1000" }, { value: "40" }, { value: "Chicago" }, { value: "No" }, { value: "" }],
+  [{ value: "10" }, { value: "350" }, { value: "12" }, { value: "New York" }, { value: "Yes" }, { value: "2023-04-25" }],
+  [{ value: "11" }, { value: "650" }, { value: "22" }, { value: "Los Angeles" }, { value: "Yes" }, { value: "2023-05-15" }],
+  [{ value: "12" }, { value: "1100" }, { value: "42" }, { value: "Chicago" }, { value: "No" }, { value: "" }],
+  [{ value: "13" }, { value: "500" }, { value: "18" }, { value: "New York" }, { value: "Yes" }, { value: "2023-06-05" }],
+  [{ value: "14" }, { value: "750" }, { value: "28" }, { value: "Los Angeles" }, { value: "No" }, { value: "" }],
+  [{ value: "15" }, { value: "1300" }, { value: "48" }, { value: "Chicago" }, { value: "No" }, { value: "" }],
+  [{ value: "16" }, { value: "200" }, { value: "8" }, { value: "New York" }, { value: "Yes" }, { value: "2023-05-30" }],
+  [{ value: "17" }, { value: "850" }, { value: "32" }, { value: "Los Angeles" }, { value: "No" }, { value: "" }],
+  [{ value: "18" }, { value: "1400" }, { value: "45" }, { value: "Chicago" }, { value: "No" }, { value: "" }],
+  [{ value: "19" }, { value: "400" }, { value: "15" }, { value: "New York" }, { value: "Yes" }, { value: "2023-06-10" }],
+  [{ value: "20" }, { value: "950" }, { value: "38" }, { value: "Los Angeles" }, { value: "No" }, { value: "" }],
+  [{ value: "21" }, { value: "1200" }, { value: "50" }, { value: "Chicago" }, { value: "No" }, { value: "" }],
+  [{ value: "22" }, { value: "300" }, { value: "12" }, { value: "New York" }, { value: "Yes" }, { value: "2023-04-20" }],
+  [{ value: "23" }, { value: "700" }, { value: "25" }, { value: "Los Angeles" }, { value: "No" }, { value: "" }],
+  [{ value: "24" }, { value: "1300" }, { value: "45" }, { value: "Chicago" }, { value: "No" }, { value: "" }],
+  [{ value: "25" }, { value: "500" }, { value: "18" }, { value: "New York" }, { value: "Yes" }, { value: "2023-06-15" }]
+];

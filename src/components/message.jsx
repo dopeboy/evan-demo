@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import Typewriter from "typewriter-effect";
 
+//const LOADING_DELAY_MS = 50;
+//const TYPEWRITER_DELAY_MS = 50;
 
-const LOADING_DELAY_MS = 50;
-const TYPEWRITER_DELAY_MS = 50;
+const LOADING_DELAY_MS = 1;
+const TYPEWRITER_DELAY_MS = 1;
 
 const Message = React.forwardRef(
   ({ messenger, date, message, loading, typewriter }, ref) => {
@@ -26,7 +28,11 @@ const Message = React.forwardRef(
         <div className="flex items-center mt-4">
           <div className="flex-none w-12">
             <span class="relative flex shrink-0 overflow-hidden rounded-full h-9 w-9">
-              <img class="aspect-square h-full w-full" src="02.png" />
+              {messenger === "You" ? (
+                <img class="aspect-square h-full w-full" src="me.jpg" />
+              ) : (
+                <img class="aspect-square h-full w-full" src="02.png" />
+              )}
             </span>
           </div>
           <div className="flex-auto ">
@@ -55,9 +61,10 @@ const Message = React.forwardRef(
                   {typewriter ? (
                     <Typewriter
                       options={{
-                      delay: TYPEWRITER_DELAY_MS,
-                    }}
-                    onInit={(typewriter) => {
+                        delay: TYPEWRITER_DELAY_MS,
+                        cursor: "",
+                      }}
+                      onInit={(typewriter) => {
                         typewriter.typeString(message).start();
                       }}
                     />
